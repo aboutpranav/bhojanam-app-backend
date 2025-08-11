@@ -139,11 +139,6 @@ const orderSchema = new mongoose.Schema(
         return new Date(Date.now() + 45 * 60 * 1000);
       },
     },
-
-    notes: {
-      type: String,
-      default: "",
-    },
   },
 
   {
