@@ -1,0 +1,360 @@
+[
+  {
+    "name": "Paneer Tikka",
+    "image": "https://sharethespice.com/wp-content/uploads/2024/02/Paneer-Tikka-Featured.jpg",
+    "price": 220,
+    "rating": 4.8,
+    "description": "Grilled paneer cubes marinated in spiced yogurt and herbs.",
+    "category": "Snacks"
+  },
+
+  {
+    "name": "French Fries",
+    "image": "https://sausagemaker.com/wp-content/uploads/Homemade-French-Fries_8.jpg",
+    "price": 99,
+    "rating": 4.5,
+    "description": "Crispy golden fries served with tangy tomato ketchup.",
+    "category": "Snacks"
+  },
+
+  {
+    "name": "Chicken Wings",
+    "image": "https://www.chilitochoc.com/wp-content/uploads/2025/01/hot-honey-chicken-wings-with-sauce-and-chili-flakes.jpg",
+    "price": 249,
+    "rating": 4.1,
+    "description": "Juicy chicken wings tossed in spicy BBQ sauce.",
+    "category": "Snacks"
+  },
+
+  {
+    "name": "Veg Spring Rolls",
+    "image": "https://sixhungryfeet.com/wp-content/uploads/2023/03/Crispy-Vegan-Spring-Rolls-4.jpg",
+    "price": 139,
+    "rating": 4.3,
+    "description": "Crispy rolls filled with sautéed veggies and served with dip.",
+    "category": "Snacks"
+  },
+
+  {
+    "name": "Samosa",
+    "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2021/12/samosa-recipe.jpg",
+    "price": 49,
+    "rating": 4.8,
+    "description": "Crispy fried pastry stuffed with spicy potato filling.",
+    "category": "Snacks"
+  },
+
+  {
+    "name": "Chicken Nuggets",
+    "image": "https://www.ambitiouskitchen.com/wp-content/uploads/2020/01/The-Best-Crispy-Baked-Chicken-Nuggets-6-725x725-1.jpg",
+    "price": 169,
+    "rating": 4.3,
+    "description": "Golden-fried chicken bites with a crispy coating.",
+    "category": "Snacks"
+  },
+
+  {
+    "name": "Cheese Balls",
+    "image": "https://madhurasrecipe.com/wp-content/uploads/2022/02/cheese_balls_featured.jpg",
+    "price": 149,
+    "rating": 4.5,
+    "description": "Crispy on the outside, cheesy on the inside – perfect bite-sized snack.",
+    "category": "Snacks"
+  },
+
+  {
+    "name": "Hara Bhara Kabab",
+    "image": "https://carveyourcraving.com/wp-content/uploads/2024/03/hara-bhara-kebab_.jpg",
+    "price": 129,
+    "rating": 4.6,
+    "description": "Green veggie kababs made with spinach, peas, and potatoes.",
+    "category": "Snacks"
+  },
+
+  {
+    "name": "Greek salad",
+    "image": "https://images.pexels.com/photos/1213710/pexels-photo-1213710.jpeg",
+    "price": 180,
+    "rating": 4.0,
+    "description": "Fresh, crisp vegetables with feta, olives, and zesty dressing.",
+    "category": "Salad"
+  },
+
+  {
+    "name": "Veg salad",
+    "image": "https://images.pexels.com/photos/33187810/pexels-photo-33187810.jpeg",
+    "price": 129,
+    "rating": 4.2,
+    "description": "Colorful mix of fresh vegetables tossed with tangy dressing.",
+    "category": "Salad"
+  },
+
+  {
+    "name": "Clover Salad",
+    "image": "https://images.pexels.com/photos/33143861/pexels-photo-33143861.jpeg",
+    "price": 199,
+    "rating": 3.9,
+    "description": "A wholesome blend of greens, sprouts, herbs, and crunch.",
+    "category": "Salad"
+  },
+
+  {
+    "name": "Chicken Salad",
+    "image": "https://images.pexels.com/photos/2741458/pexels-photo-2741458.jpeg",
+    "price": 180,
+    "rating": 4.0,
+    "description": "Tender chicken with fresh veggies, herbs, and creamy dressing",
+    "category": "Salad"
+  },
+
+  {
+    "name": "Lasagna Rolls",
+    "image": "https://images.pexels.com/photos/8951556/pexels-photo-8951556.jpeg",
+    "price": 149,
+    "rating": 3.8,
+    "description": "Rolled pasta stuffed with cheese, herbs, and sauce.",
+    "category": "Rolls"
+  },
+
+  {
+    "name": "Peri Peri Rolls",
+    "image": "https://www.highonchicken.com/wp-content/uploads/2023/07/image29-2.png",
+    "price": 199,
+    "rating": 4.3,
+    "description": "Spicy peri peri-flavored filling wrapped in a soft roll.",
+    "category": "Rolls"
+  },
+
+  {
+    "name": "Chicken Rolls",
+    "image": "https://lh4.googleusercontent.com/proxy/EG-kWc7b5gqVrXOriIpVK4ao-jNHc5WfpDzv2g0PV_yIhzAl4tAXAy_9q69f00QG-3odYcWYf2jb7keCIUv5DCp2xp16tSMiXnpn",
+    "price": 180,
+    "rating": 4.2,
+    "description": "Juicy chicken wrapped in warm, spiced flatbread roll.",
+    "category": "Rolls"
+  },
+  {
+    "name": "Veg Rolls",
+    "image": "https://spicecravings.com/wp-content/uploads/2020/12/Paneer-kathi-Roll-Featured-1-500x375.jpg",
+    "price": 130,
+    "rating": 4.4,
+    "description": "Crunchy veggies seasoned and rolled in soft wrap bread.",
+    "category": "Rolls"
+  },
+
+  {
+    "name": "Ripple Ice Cream",
+    "image": "https://img.taste.com.au/baRkE1OP/taste/2016/11/raspberry-ripple-ice-cream-104791-1.jpeg",
+    "price": 179,
+    "rating": 4.5,
+    "description": "Creamy ice cream swirled with vibrant, fruity ripples.",
+    "category": "Deserts"
+  },
+
+  {
+    "name": "Fruit Ice Cream",
+    "image": "https://www.allrecipes.com/thmb/_ynTUbGciS9uRG3WzvdToQdSOXg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/50050-five-minute-ice-cream-DDMFS-2x1-077-c9d38152e1c1490284371890762ce600.jpg",
+    "price": 280,
+    "rating": 4.6,
+    "description": "Cool, refreshing ice cream with chunks of fresh fruits.",
+    "category": "Deserts"
+  },
+
+  {
+    "name": "Jar Ice Cream",
+    "image": "https://www.allrecipes.com/thmb/pmwacie_xjrqW5ZDWBciCS0mwvU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/8460062-Mason-Jar-Ice-Cream-ddmfs-4x3-0105-49976b8fbcae4c8b9e8359936a445fe6.jpg",
+    "price": 249,
+    "rating": 4.1,
+    "description": "Creamy layered ice cream served chilled in a jar.",
+    "category": "Deserts"
+  },
+
+  {
+    "name": "Vanilla Ice Cream",
+    "image": "https://www.allrecipes.com/thmb/xA0NsqO_lNpSFT3wsgw4LEgzJmM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-RM-233928-how-to-make-vanilla-ice-cream-ddmfs-3x4-c5b61f092fe14296b52ca364b1446800.jpg",
+    "price": 180,
+    "rating": 4.3,
+    "description": "Classic smooth vanilla treat with rich, creamy flavor.",
+    "category": "Deserts"
+  },
+
+  {
+    "name": "Chicken Sandwich",
+    "image": "https://www.licious.in/blog/wp-content/uploads/2020/12/Grilled-Chicken-Sandwich.jpg",
+    "price": 199,
+    "rating": 4.4,
+    "description": "Grilled chicken with fresh veggies between soft toasted bread.",
+    "category": "Sandwich"
+  },
+
+  {
+    "name": "Vegan Sandwich",
+    "image": "https://hips.hearstapps.com/hmg-prod/images/delish-20210423-ultimate-veggie-sandwich-001-ab-1622826517.jpg?crop=0.6671220400728597xw:1xh;center,top&resize=1200:*",
+    "price": 149,
+    "rating": 4.1,
+    "description": "Plant-based filling with veggies on whole grain bread.",
+    "category": "Sandwich"
+  },
+
+  {
+    "name": "Grilled Sandwich",
+    "image": "https://justbakedcake.com/wp-content/uploads/2021/09/Chicken-Grilled-sandwich-1.jpg",
+    "price": 149,
+    "rating": 4.5,
+    "description": "Crispy, golden sandwich grilled with cheesy veggie filling.",
+    "category": "Sandwich"
+  },
+
+  {
+    "name": "Bread Sandwich",
+    "image": "https://dww3ueizok6z0.cloudfront.net/food/banner/13634-841de01663199738cb087124cc2fe412d59396c9",
+    "price": 129,
+    "rating": 4.2,
+    "description": "Simple and tasty sandwich made with fresh sliced bread.",
+    "category": "Sandwich"
+  },
+
+  {
+    "name": "Cup Cake",
+    "image": "https://www.fnp.com/images/pr/usa/l/v20221123120317/assorted-cup-cakes-12_2.jpg",
+    "price": 259,
+    "rating": 4.4,
+    "description": "Mini dessert with moist sponge and creamy frosting swirl.",
+    "category": "Cake"
+  },
+
+  {
+    "name": "Vegan Cake",
+    "image": "https://www.vibrantplate.com/wp-content/uploads/2018/12/Vegan-raspberry-cake-10-720x540.jpg",
+    "price": 379,
+    "rating": 4.5,
+    "description": "Eggless, dairy-free cake with natural, plant-based ingredients.",
+    "category": "Cake"
+  },
+
+  {
+    "name": "Butterscotch Cake",
+    "image": "https://sahnibakery.com/cdn/shop/products/AppetizingButterscotchCake699.jpg?v=1609333737",
+    "price": 349,
+    "rating": 4.1,
+    "description": "Rich, fluffy cake layered with butterscotch cream delight.",
+    "category": "Cake"
+  },
+
+  {
+    "name": "Sliced Cake",
+    "image": "https://cocoadrama.co.in/cdn/shop/files/WhatsAppImage2024-12-18at12.38.24.jpg?v=1735213804",
+    "price": 299,
+    "rating": 4.4,
+    "description": "Pre-cut soft cake slice, perfect for quick treats.",
+    "category": "Cake"
+  },
+
+  {
+    "name": "Garlic Mushroom",
+    "image": "https://creativescookery.com/wp-content/uploads/2024/04/Steakhouse-Garlic-Butter-Mushrooms-Recipe-1.webp",
+    "price": 199,
+    "rating": 3.9,
+    "description": "Mushrooms sautéed in garlic butter with fresh herbs.",
+    "category": "Pure Veg"
+  },
+
+  {
+    "name": "Fried Cauliflower",
+    "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2023/07/cauliflower-stir-fry-recipe.jpg",
+    "price": 130,
+    "rating": 4.0,
+    "description": "Crispy, golden-fried cauliflower bites tossed in spices.",
+    "category": "Pure Veg"
+  },
+
+  {
+    "name": "Mix Veg Pulao",
+    "image": "https://www.indianveggiedelight.com/wp-content/uploads/2019/07/veg-pulao-featured.jpg",
+    "price": 179,
+    "rating": 4.2,
+    "description": "Fragrant rice cooked with assorted spiced seasonal vegetables.",
+    "category": "Pure Veg"
+  },
+
+  {
+    "name": "Rice Zucchini",
+    "image": "https://dizzybusyandhungry.com/wp-content/uploads/2025/04/zucchini-fried-rice-feature.jpg",
+    "price": 149,
+    "rating": 3.5,
+    "description": "Light rice bowl with tender zucchini and spices.",
+    "category": "Pure Veg"
+  },
+
+  {
+    "name": "Cheese Pasta",
+    "image": "https://cravinghomecooked.com/wp-content/uploads/2019/06/cheesy-chicken-pasta-1-15.jpg",
+    "price": 315,
+    "rating": 4.5,
+    "description": "Pasta smothered in rich, creamy melted cheese sauce.",
+    "category": "Pasta"
+  },
+
+  {
+    "name": "Tomato Pasta",
+    "image": "https://www.joyousapron.com/wp-content/uploads/2023/04/cherry-tomato-pasta-sq-pic.jpg",
+    "price": 299,
+    "rating": 4.3,
+    "description": "Zesty tomato sauce tossed with perfectly cooked pasta.",
+    "category": "Pasta"
+  },
+
+  {
+    "name": "Creamy Pasta",
+    "image": "https://theherbeevore.com/wp-content/uploads/2023/05/wp-1684808953872.jpg",
+    "price": 310,
+    "rating": 4.4,
+    "description": "Silky cream-based sauce with herbs and tender pasta.",
+    "category": "Pasta"
+  },
+
+  {
+    "name": "Chicken Pasta",
+    "image": "https://gimmedelicious.com/wp-content/uploads/2024/10/Skinny-Chicken-Broccoli-Alfredo-1.jpg",
+    "price": 329,
+    "rating": 4.2,
+    "description": "Savory chicken mixed with pasta and spiced white sauce.",
+    "category": "Pasta"
+  },
+
+  {
+    "name": "Butter Noodles",
+    "image": "https://www.allrecipes.com/thmb/IAP81Be7Nyly6t_Wkq1uYKzH-qo=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/244458-buttered-noodles-DDMFS-4x3-b9931662efa64b37883c0f73b296b124.jpg",
+    "price": 279,
+    "rating": 4.1,
+    "description": "Soft noodles tossed in aromatic butter and herbs.",
+    "category": "Noodles"
+  },
+
+  {
+    "name": "Veg Noodles",
+    "image": "https://vegecravings.com/wp-content/uploads/2017/03/veg-hakka-noodles-recipe-with-step-by-step-instructions.jpg",
+    "price": 199,
+    "rating": 4.4,
+    "description": "Stir-fried noodles with colorful veggies and soy flavors.",
+    "category": "Noodles"
+  },
+
+  {
+    "name": "Somen Noodles",
+    "image": "https://sudachirecipes.com/wp-content/uploads/2022/09/somen-soup-sq.jpg",
+    "price": 299,
+    "rating": 3.9,
+    "description": "Thin Japanese-style noodles served chilled or lightly seasoned.",
+    "category": "Noodles"
+  },
+
+  {
+    "name": "Cooked Noodles",
+    "image": "https://static01.nyt.com/images/2024/11/21/multimedia/ML-Mie-Goreng-Mee-Goreng-Indonesian-Fried-Noodlesrex-mvhk/ML-Mie-Goreng-Mee-Goreng-Indonesian-Fried-Noodlesrex-mvhk-mediumSquareAt3X.jpg",
+    "price": 249,
+    "rating": 4.1,
+    "description": "Plain cooked noodles, soft and ready for seasoning.",
+    "category": "Noodles"
+  }
+]
