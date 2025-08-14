@@ -76,6 +76,32 @@ app.get("/foodItems", async (req, res) => {
   }
 });
 
+// get a particular food item by its "id"
+
+async function readFoodItemById(foodItemId) {
+  try {
+    const foodItem = await Food.findById(foodItemId);
+
+    return foodItem;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+app.get("/foodItems/:foodItemId", async (req, res) => {
+  try {
+    const foodItem = await readFoodItemById(req.params.foodItemId);
+
+    if (foodItem) {
+      res.json(foodItem);
+    } else {
+      res.status(404).json({ error: "Food Item not found." });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch food item." });
+  }
+});
+
 // create a new food item
 
 async function createFoodItem(newFoodItem) {
