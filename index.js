@@ -630,7 +630,7 @@ async function addToCart(userId, foodItemData, quantity = 1) {
   }
 }
 
-app.post("/cart/:userId/add", async (req, res) => {
+app.post("/cart/add", async (req, res) => {
   try {
     const { foodItem, quantity } = req.body;
     const result = await addToCart(req.params.userId, foodItem, quantity || 1);
