@@ -18,6 +18,8 @@ const Food = require("./models/food.model");
 const User = require("./models/user.model");
 const Address = require("./models/address.model");
 const Order = require("./models/order.model");
+const Wishlist = require("./models/wishlist.model");
+const Cart = require("./models/cart.model");
 
 app.use(express.json());
 
@@ -414,13 +416,13 @@ async function getOrdersByEmail(email) {
   try {
     const decodedEmail = decodeURIComponent(email);
 
-    console.log("Searching for orders with email:", decodedEmail); // Debug log
+    console.log("Searching for orders with email:", decodedEmail);
 
     const orders = await Order.find({
       "customerInfo.email": decodedEmail,
     }).sort({ createdAt: -1 });
 
-    console.log("Found orders:", orders.length); // Debug log
+    console.log("Found orders:", orders.length);
 
     return orders;
   } catch (error) {
@@ -442,6 +444,352 @@ app.get("/orders/customer/:email", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch customer orders." });
   }
 });
+
+// -->> API routes for Wishlist Management
+
+// Get user's wishlist
+async function getUserWishlist(userId) {
+  try {
+    const wishlist = await Wishlist.findOne({ userId }).populate(
+      "items.foodId"
+    );
+    return wishlist || { userId, items: [] };
+  } catch (error) {
+    console.log("Error fetching wishlist:", error);
+    throw error;
+  }
+}
+
+app.get("/wishlist/:userId", async (req, res) => {
+  try {
+    const wishlist = await getUserWishlist(req.params.userId);
+    res.json(wishlist);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch wishlist." });
+  }
+});
+
+// Add item to wishlist
+async function addToWishlist(userId, foodItemData) {
+  try {
+    let wishlist = await Wishlist.findOne({ userId });
+
+    if (!wishlist) {
+      wishlist = new Wishlist({ userId, items: [] });
+    }
+
+    const existingItemIndex = wishlist.items.findIndex(
+      (item) => item.foodId.toString() === foodItemData._id
+    );
+
+    if (existingItemIndex === -1) {
+      wishlist.items.push({
+        foodId: foodItemData._id,
+        name: foodItemData.name,
+        image: foodItemData.image,
+        price: foodItemData.price,
+        category: foodItemData.category,
+        rating: foodItemData.rating,
+        description: foodItemData.description,
+      });
+
+      await wishlist.save();
+      return { message: "Item added to wishlist", wishlist };
+    } else {
+      return { message: "Item already in wishlist", wishlist };
+    }
+  } catch (error) {
+    console.log("Error adding to wishlist:", error);
+    throw error;
+  }
+}
+
+app.post("/wishlist/:userId/add", async (req, res) => {
+  try {
+    const result = await addToWishlist(req.params.userId, req.body);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to add item to wishlist." });
+  }
+});
+
+// Remove item from wishlist
+async function removeFromWishlist(userId, foodId) {
+  try {
+    const wishlist = await Wishlist.findOne({ userId });
+
+    if (!wishlist) {
+      return { message: "Wishlist not found" };
+    }
+
+    wishlist.items = wishlist.items.filter(
+      (item) => item.foodId.toString() !== foodId
+    );
+
+    await wishlist.save();
+    return { message: "Item removed from wishlist", wishlist };
+  } catch (error) {
+    console.log("Error removing from wishlist:", error);
+    throw error;
+  }
+}
+
+app.delete("/wishlist/:userId/remove/:foodId", async (req, res) => {
+  try {
+    const result = await removeFromWishlist(
+      req.params.userId,
+      req.params.foodId
+    );
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to remove item from wishlist." });
+  }
+});
+
+// Clear entire wishlist
+async function clearWishlist(userId) {
+  try {
+    const wishlist = await Wishlist.findOne({ userId });
+
+    if (!wishlist) {
+      return { message: "Wishlist not found" };
+    }
+
+    wishlist.items = [];
+    await wishlist.save();
+    return { message: "Wishlist cleared", wishlist };
+  } catch (error) {
+    console.log("Error clearing wishlist:", error);
+    throw error;
+  }
+}
+
+app.delete("/wishlist/:userId/clear", async (req, res) => {
+  try {
+    const result = await clearWishlist(req.params.userId);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to clear wishlist." });
+  }
+});
+
+// -->> API routes for Cart Management
+
+// Get user's cart
+async function getUserCart(userId) {
+  try {
+    const cart = await Cart.findOne({ userId }).populate("items.foodId");
+    return cart || { userId, items: [], totalAmount: 0, itemCount: 0 };
+  } catch (error) {
+    console.log("Error fetching cart:", error);
+    throw error;
+  }
+}
+
+app.get("/cart/:userId", async (req, res) => {
+  try {
+    const cart = await getUserCart(req.params.userId);
+    res.json(cart);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch cart." });
+  }
+});
+
+// Add item to cart
+async function addToCart(userId, foodItemData, quantity = 1) {
+  try {
+    let cart = await Cart.findOne({ userId });
+
+    if (!cart) {
+      cart = new Cart({ userId, items: [] });
+    }
+
+    const existingItemIndex = cart.items.findIndex(
+      (item) => item.foodId.toString() === foodItemData._id
+    );
+
+    if (existingItemIndex !== -1) {
+      cart.items[existingItemIndex].quantity += quantity;
+      cart.items[existingItemIndex].updatedAt = new Date();
+    } else {
+      cart.items.push({
+        foodId: foodItemData._id,
+        name: foodItemData.name,
+        image: foodItemData.image,
+        price: foodItemData.price,
+        category: foodItemData.category,
+        rating: foodItemData.rating,
+        quantity: quantity,
+      });
+    }
+
+    await cart.save();
+    return { message: "Item added to cart", cart };
+  } catch (error) {
+    console.log("Error adding to cart:", error);
+    throw error;
+  }
+}
+
+app.post("/cart/:userId/add", async (req, res) => {
+  try {
+    const { foodItem, quantity } = req.body;
+    const result = await addToCart(req.params.userId, foodItem, quantity || 1);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to add item to cart." });
+  }
+});
+
+// Update item quantity in cart
+async function updateCartItemQuantity(userId, foodId, quantity) {
+  try {
+    const cart = await Cart.findOne({ userId });
+
+    if (!cart) {
+      return { message: "Cart not found" };
+    }
+
+    const itemIndex = cart.items.findIndex(
+      (item) => item.foodId.toString() === foodId
+    );
+
+    if (itemIndex === -1) {
+      return { message: "Item not found in cart" };
+    }
+
+    if (quantity <= 0) {
+      cart.items.splice(itemIndex, 1);
+    } else {
+      cart.items[itemIndex].quantity = quantity;
+      cart.items[itemIndex].updatedAt = new Date();
+    }
+
+    await cart.save();
+    return { message: "Cart updated", cart };
+  } catch (error) {
+    console.log("Error updating cart item quantity:", error);
+    throw error;
+  }
+}
+
+app.patch("/cart/:userId/update/:foodId", async (req, res) => {
+  try {
+    const { quantity } = req.body;
+    const result = await updateCartItemQuantity(
+      req.params.userId,
+      req.params.foodId,
+      quantity
+    );
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update cart item." });
+  }
+});
+
+// Remove item from cart
+async function removeFromCart(userId, foodId) {
+  try {
+    const cart = await Cart.findOne({ userId });
+
+    if (!cart) {
+      return { message: "Cart not found" };
+    }
+
+    cart.items = cart.items.filter((item) => item.foodId.toString() !== foodId);
+
+    await cart.save();
+    return { message: "Item removed from cart", cart };
+  } catch (error) {
+    console.log("Error removing from cart:", error);
+    throw error;
+  }
+}
+
+app.delete("/cart/:userId/remove/:foodId", async (req, res) => {
+  try {
+    const result = await removeFromCart(req.params.userId, req.params.foodId);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to remove item from cart." });
+  }
+});
+
+// Clear entire cart
+async function clearCart(userId) {
+  try {
+    const cart = await Cart.findOne({ userId });
+
+    if (!cart) {
+      return { message: "Cart not found" };
+    }
+
+    cart.items = [];
+    await cart.save();
+    return { message: "Cart cleared", cart };
+  } catch (error) {
+    console.log("Error clearing cart:", error);
+    throw error;
+  }
+}
+
+app.delete("/cart/:userId/clear", async (req, res) => {
+  try {
+    const result = await clearCart(req.params.userId);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to clear cart." });
+  }
+});
+
+async function syncCart(userId, localCartItems, foodList) {
+  try {
+    let cart = await Cart.findOne({ userId });
+
+    if (!cart) {
+      cart = new Cart({ userId, items: [] });
+    }
+
+    cart.items = [];
+
+    for (const [foodId, quantity] of Object.entries(localCartItems)) {
+      if (quantity > 0) {
+        const foodItem = foodList.find((item) => item._id === foodId);
+        if (foodItem) {
+          cart.items.push({
+            foodId: foodItem._id,
+            name: foodItem.name,
+            image: foodItem.image,
+            price: foodItem.price,
+            category: foodItem.category,
+            rating: foodItem.rating,
+            quantity: quantity,
+          });
+        }
+      }
+    }
+
+    await cart.save();
+    return { message: "Cart synced successfully", cart };
+  } catch (error) {
+    console.log("Error syncing cart:", error);
+    throw error;
+  }
+}
+
+app.post("/cart/:userId/sync", async (req, res) => {
+  try {
+    const { localCartItems } = req.body;
+
+    const foodList = await Food.find();
+
+    const result = await syncCart(req.params.userId, localCartItems, foodList);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to sync cart." });
+  }
+});
+
 const PORT = 3000;
 
 app.listen(PORT, () => {
