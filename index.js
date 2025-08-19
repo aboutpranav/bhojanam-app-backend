@@ -309,7 +309,6 @@ app.post("/addresses/:addressId", async (req, res) => {
 
 async function createOrder(newOrderData) {
   try {
-    // Count total orders to generate a new order number
     const count = await Order.countDocuments();
     const orderNumber = `ORD${String(count + 1).padStart(6, "0")}`;
 
@@ -460,7 +459,7 @@ async function getUserWishlist(userId) {
   }
 }
 
-app.get("/wishlist/:userId", async (req, res) => {
+app.get("/wishlist", async (req, res) => {
   try {
     const wishlist = await getUserWishlist(req.params.userId);
     res.json(wishlist);
@@ -504,7 +503,7 @@ async function addToWishlist(userId, foodItemData) {
   }
 }
 
-app.post("/wishlist/:userId/add", async (req, res) => {
+app.post("/wishlist/add", async (req, res) => {
   try {
     const result = await addToWishlist(req.params.userId, req.body);
     res.status(200).json(result);
@@ -534,7 +533,7 @@ async function removeFromWishlist(userId, foodId) {
   }
 }
 
-app.delete("/wishlist/:userId/remove/:foodId", async (req, res) => {
+app.delete("/wishlist/remove/:foodId", async (req, res) => {
   try {
     const result = await removeFromWishlist(
       req.params.userId,
@@ -564,7 +563,7 @@ async function clearWishlist(userId) {
   }
 }
 
-app.delete("/wishlist/:userId/clear", async (req, res) => {
+app.delete("/wishlist/clear", async (req, res) => {
   try {
     const result = await clearWishlist(req.params.userId);
     res.status(200).json(result);
@@ -586,7 +585,7 @@ async function getUserCart(userId) {
   }
 }
 
-app.get("/cart/:userId", async (req, res) => {
+app.get("/cart", async (req, res) => {
   try {
     const cart = await getUserCart(req.params.userId);
     res.json(cart);
@@ -673,7 +672,7 @@ async function updateCartItemQuantity(userId, foodId, quantity) {
   }
 }
 
-app.patch("/cart/:userId/update/:foodId", async (req, res) => {
+app.post("/cart/update/:foodId", async (req, res) => {
   try {
     const { quantity } = req.body;
     const result = await updateCartItemQuantity(
@@ -706,7 +705,7 @@ async function removeFromCart(userId, foodId) {
   }
 }
 
-app.delete("/cart/:userId/remove/:foodId", async (req, res) => {
+app.delete("/cart/remove/:foodId", async (req, res) => {
   try {
     const result = await removeFromCart(req.params.userId, req.params.foodId);
     res.status(200).json(result);
@@ -733,60 +732,12 @@ async function clearCart(userId) {
   }
 }
 
-app.delete("/cart/:userId/clear", async (req, res) => {
+app.delete("/cart/clear", async (req, res) => {
   try {
     const result = await clearCart(req.params.userId);
     res.status(200).json(result);
   } catch (error) {
     res.status(500).json({ error: "Failed to clear cart." });
-  }
-});
-
-async function syncCart(userId, localCartItems, foodList) {
-  try {
-    let cart = await Cart.findOne({ userId });
-
-    if (!cart) {
-      cart = new Cart({ userId, items: [] });
-    }
-
-    cart.items = [];
-
-    for (const [foodId, quantity] of Object.entries(localCartItems)) {
-      if (quantity > 0) {
-        const foodItem = foodList.find((item) => item._id === foodId);
-        if (foodItem) {
-          cart.items.push({
-            foodId: foodItem._id,
-            name: foodItem.name,
-            image: foodItem.image,
-            price: foodItem.price,
-            category: foodItem.category,
-            rating: foodItem.rating,
-            quantity: quantity,
-          });
-        }
-      }
-    }
-
-    await cart.save();
-    return { message: "Cart synced successfully", cart };
-  } catch (error) {
-    console.log("Error syncing cart:", error);
-    throw error;
-  }
-}
-
-app.post("/cart/:userId/sync", async (req, res) => {
-  try {
-    const { localCartItems } = req.body;
-
-    const foodList = await Food.find();
-
-    const result = await syncCart(req.params.userId, localCartItems, foodList);
-    res.status(200).json(result);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to sync cart." });
   }
 });
 

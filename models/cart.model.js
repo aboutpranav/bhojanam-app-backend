@@ -68,25 +68,6 @@ const cartSchema = new mongoose.Schema(
   }
 );
 
-cartSchema.index({ userId: 1 }, { unique: true });
-
-cartSchema.pre("save", function (next) {
-  this.totalAmount = this.items.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
-  this.itemCount = this.items.reduce((count, item) => count + item.quantity, 0);
-  this.lastUpdated = new Date();
-
-  this.items.forEach((item) => {
-    if (item.isModified && item.isModified()) {
-      item.updatedAt = new Date();
-    }
-  });
-
-  next();
-});
-
 const Cart = mongoose.models.Cart || mongoose.model("Cart", cartSchema);
 
 module.exports = Cart;
